@@ -246,7 +246,7 @@
       <li class="nav-item dropdown dropdown-user">
         <a href="#" class="navbar-nav-link dropdown-toggle" data-toggle="dropdown">
           <% if user_signed_in? %>
-           <span>User Name</span>
+           <span><%= current_user.name %></span>
           <% else %>
             <span>User Name</span>
           <% end %>

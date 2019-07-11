@@ -3,7 +3,7 @@
   <!-- Content area -->
   <div class="content d-flex justify-content-center align-items-center">
     <!-- Login form -->
-    <form class="login-form" action="index.html">
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div class="card mb-0">
         <div class="card-body">
           <div class="text-center mb-3">
@@ -12,13 +12,13 @@
             <span class="d-block text-muted">Enter your credentials below</span>
           </div>
           <div class="form-group form-group-feedback form-group-feedback-left">
-            <input type="text" class="form-control" placeholder="Username">
+            <input type="email" name="user[email]" class="form-control" placeholder="Email">
             <div class="form-control-feedback">
               <i class="icon-user text-muted"></i>
             </div>
           </div>
           <div class="form-group form-group-feedback form-group-feedback-left">
-            <input type="password" class="form-control" placeholder="Password">
+            <input type="password" name="user[password]" class="form-control" placeholder="Password">
             <div class="form-control-feedback">
               <i class="icon-lock2 text-muted"></i>
             </div>
@@ -27,40 +27,16 @@
             <button type="submit" class="btn btn-primary btn-block">Sign in <i class="icon-circle-right2 ml-2"></i></button>
           </div>
           <div class="text-center">
-            <a href="login_password_recover.html">Forgot password?</a>
+              <a href="<%= new_registration_path(resource_name)%>">Sign up</a>
+          </div>          
+          <div class="text-center">
+            <a href="<%= new_password_path(resource_name)%>">Forgot password?</a>
           </div>
         </div>
       </div>
-    </form>
+      <% end %>
     <!-- /login form -->
   </div>
   <!-- /content area -->
 </div>
 <!-- /main content -->
-
-<h2>Log in</h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
-    </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
-
-<%= render "users/shared/links" %>
